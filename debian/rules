@@ -6,6 +6,10 @@ export PYBUILD_NAME=grip
 	dh $@ --with python3 --buildsystem=pybuild
 
 
+override_dh_auto_build:
+	dh_auto_build
+	txt2man -s 1 -t grip debian/docs/grip.txt > debian/grip.1
+
 override_dh_auto_install:
 	dh_auto_install
 	# Remove auto-generated entry point script which wil be replaced by a

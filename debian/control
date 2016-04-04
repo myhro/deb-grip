@@ -6,6 +6,7 @@ Build-Depends: debhelper (>= 9),
                dh-python,
                python3-all,
                python3-setuptools
+Build-Depends-Indep: txt2man
 Standards-Version: 3.9.7
 X-Python-Version: >= 3.3
 Homepage: https://github.com/joeyespo/grip
