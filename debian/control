@@ -1,15 +1,24 @@
 Source: grip
-Section: unknown
+Section: utils
 Priority: optional
 Maintainer: Tiago Ilieve <tiago.myhro@gmail.com>
-Build-Depends: debhelper (>= 9)
-Standards-Version: 3.9.5
-Homepage: <insert the upstream URL, if relevant>
-#Vcs-Git: git://anonscm.debian.org/collab-maint/grip.git
-#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/grip.git;a=summary
+Build-Depends: debhelper (>= 9),
+               dh-python,
+               python3-all,
+               python3-setuptools
+Standards-Version: 3.9.7
+X-Python-Version: >= 3.3
+Homepage: https://github.com/joeyespo/grip
+Vcs-Git: https://anonscm.debian.org/git/collab-maint/grip.git
+Vcs-Browser: https://anonscm.debian.org/git/collab-maint/grip.git
 
 Package: grip
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Architecture: all
+Depends: ${misc:Depends},
+         ${python3:Depends}
+Description: Preview GitHub Markdown files like Readme locally
+ Grip is a command-line server application written in Python that uses the
+ GitHub markdown API to render a local readme file. The styles come directly
+ from GitHub, so you'll know exactly how it will appear. Changes you make to
+ the Readme will be instantly reflected in the browser without requiring a page
+ refresh.
