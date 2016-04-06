@@ -5,6 +5,12 @@ Maintainer: Tiago Ilieve <tiago.myhro@gmail.com>
 Build-Depends: debhelper (>= 9),
                dh-python,
                python3-all,
+               python3-docopt,
+               python3-flask,
+               python3-path-and-address,
+               python3-pytest,
+               python3-requests,
+               python3-responses (>= 0.5.0),
                python3-setuptools
 Build-Depends-Indep: txt2man
 Standards-Version: 3.9.7

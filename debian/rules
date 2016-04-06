@@ -2,6 +2,17 @@
 
 export PYBUILD_NAME=grip
 
+export PYBUILD_TEST_PYTEST=1
+export PYBUILD_BEFORE_TEST=cp {dir}/README.md {build_dir}
+export PYBUILD_AFTER_TEST=rm -f {build_dir}/README.md
+
+# pytest arguments:
+#
+# '-m "not assumption"' prevents external calls to GitHub API
+# 'tests/test_cli.py' are functional tests not run at build time (DEP-8)
+export PYBUILD_TEST_ARGS=-m "not assumption" --ignore=tests/test_cli.py
+
+
 %:
 	dh $@ --with python3 --buildsystem=pybuild
 
@@ -15,10 +26,3 @@ override_dh_auto_install:
 	# Remove auto-generated entry point script which wil be replaced by a
 	# custom one
 	rm debian/grip/usr/bin/grip
-
-
-override_dh_auto_test:
-	# Tests need an updated 'python-responses' library
-	#
-	# The '-m "not assumption"' argument prevents external calls to GitHub API
-	#pybuild --test-pytest --test-args='-m "not assumption"'
