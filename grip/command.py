@@ -23,10 +23,12 @@ Options:
                     input will be necessary.
   --pass=<password> A GitHub password or auth token for API auth.
   --wide            Renders wide, i.e. when the side nav is collapsed.
+                    This only takes effect when --user-content is used.
   --clear           Clears the cached styles and assets and exits.
   --export          Exports to <path>.html or README.md instead of
                     serving, optionally using [<address>] as the out
                     file (- for stdout).
+  --no-inline       Link to styles instead inlining when using --export.
   -b --browser      Open a tab in the browser after the server starts.
   --api-url=<url>   Specify a different base URL for the github API,
                     for example that of a Github Enterprise instance.
@@ -35,12 +37,13 @@ Options:
                     The default is the filename.
   --norefresh       Do not automatically refresh the Readme content when
                     the file changes.
-  --quiet           Do not print to the terminal
+  --quiet           Do not print to the terminal.
 """
 
 from __future__ import print_function
 
 import sys
+import mimetypes
 
 from docopt import docopt
 from getpass import getpass
@@ -55,13 +58,15 @@ usage = '\n\n\n'.join(__doc__.split('\n\n\n')[1:])
 version = 'Grip ' + __version__
 
 
-def main(argv=None, force_utf8=True):
+def main(argv=None, force_utf8=True, patch_svg=True):
     """
     The entry point of the application.
     """
     if force_utf8 and sys.version_info[0] == 2:
         reload(sys)
         sys.setdefaultencoding('utf-8')
+    if patch_svg and sys.version_info[0] == 2 and sys.version_info[2] <= 6:
+        mimetypes.add_type('image/svg+xml', '.svg')
 
     if argv is None:
         argv = sys.argv[1:]
@@ -99,7 +104,8 @@ def main(argv=None, force_utf8=True):
         try:
             export(args['<path>'], args['--user-content'], args['--context'],
                    args['--user'], password, False, args['--wide'],
-                   True, args['<address>'], args['--api-url'], args['--title'])
+                   not args['--no-inline'], args['<address>'],
+                   args['--api-url'], args['--title'])
             return 0
         except ReadmeNotFoundError as ex:
             print('Error:', ex)

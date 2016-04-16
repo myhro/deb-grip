@@ -4,11 +4,11 @@ Grip
 
 Render local readme files before sending off to GitHub.
 
-:copyright: (c) 2014-2015 by Joe Esposito.
+:copyright: (c) 2014-2016 by Joe Esposito.
 :license: MIT, see LICENSE for more details.
 """
 
-__version__ = '4.1.0'
+__version__ = '4.2.0'
 
 from .api import (
     clear_cache, create_app, export, render_content, render_page, serve)
