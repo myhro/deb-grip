@@ -1,3 +1,11 @@
+grip (4.2.0-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+  * Bump copyright year for Joe Esposito.
+  * Update man page adding new '--no-inline' option.
+
+ -- Tiago Ilieve <tiago.myhro@gmail.com>  Sat, 16 Apr 2016 12:51:47 -0300
+
 grip (4.1.0-1) unstable; urgency=medium
 
   * Initial release (Closes: #790611)

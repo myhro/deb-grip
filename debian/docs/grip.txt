@@ -35,6 +35,8 @@ OPTIONS
                      serving, optionally using [<address>] as the out
                      file (- for stdout).
 
+  --no-inline        Link to styles instead inlining when using --export.
+
   -b --browser       Open a tab in the browser after the server starts.
 
   --api-url=<url>    Specify a different base URL for the github API,
@@ -47,11 +49,11 @@ OPTIONS
   --norefresh        Do not automatically refresh the Readme content when
                      the file changes.
 
-  --quiet            Do not print to the terminal
+  --quiet            Do not print to the terminal.
 
-  -V, --version      Version info
+  -V, --version      Version info.
 
-  -h, --help         Show help message and exit
+  -h, --help         Show help message and exit.
 
 EXAMPLES
   To render the readme of a repository:
@@ -92,6 +94,11 @@ EXAMPLES
   Control the output name with the second argument:
 
     $ grip README.md --export readme.html
+
+  If you're exporting a bunch of files, you can prevent styles from being
+  inlined to save space with --no-inline:
+
+    $ grip README.md --export --no-inline introduction.html
 
   Reading from stdin:
 
