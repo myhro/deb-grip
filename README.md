@@ -3,16 +3,17 @@ Grip -- GitHub Readme Instant Preview
 
 [![Current version on PyPI](http://img.shields.io/pypi/v/grip.svg)][pypi]
 [![Downloads/month on PyPI](http://img.shields.io/pypi/dm/grip.svg)][pypi]
-<a href="http://joeyespo.us2.list-manage.com/subscribe?u=255dd49194fa8078258d9a735&id=d76534e979&group[14285][1]=true" target="_blank">
-  <img src="https://img.shields.io/badge/release%20letter-subscribe-e85c41.svg" title="Get notified about new Grip releases" alt="Get notified about new Grip releases">
+<a href="https://gratipay.com/grip/" title="Thank you!" target="_blank">
+  <img src="https://img.shields.io/gratipay/grip.svg" alt="Thank you!">
 </a>
 
 Render local readme files before sending off to GitHub.
 
 Grip is a command-line server application written in Python that uses the
-[GitHub markdown API][markdown] to render a local readme file. The styles also
+[GitHub markdown API][markdown] to render a local readme file. The styles
 come directly from GitHub, so you'll know exactly how it will appear. Changes
-you make to the Readme file will be instantly reflected in the browser.
+you make to the Readme will be instantly reflected in the browser without
+requiring a page refresh.
 
 
 Motivation
@@ -96,6 +97,13 @@ $ grip README.md --export readme.html
 Exporting to readme.html
 ```
 
+If you're exporting a bunch of files, you can prevent styles from being inlining to save space with `--no-inline`:
+
+```bash
+$ grip README.md --export --no-inline introduction.html
+Exporting to introduction.html
+```
+
 Reading and writing from **stdin** and **stdout** is also supported, allowing you to use Grip with other programs:
 
 ```bash
@@ -120,7 +128,7 @@ Hello **world**!
  * Running on http://localhost:6419/
 ```
 
-*Note: `^D` means `Ctrl+D`, which works on Linux and iOS. On Windows you'll have to use `Ctrl+Z`.*
+*Note: `^D` means `Ctrl+D`, which works on Linux and OS X. On Windows you'll have to use `Ctrl+Z`.*
 
 Rendering as user-content like **comments** and **issues** is also supported, with an optional repository context for linking to issues:
 
@@ -176,6 +184,9 @@ Tips
 
 Here's how others from the community are using Grip.
 
+Want to share your own? [Say hello @joeyespo][twitter] or [submit a pull request](#contributing).
+
+
 #### Create a local mirror of a Github Wiki
 
 ```bash
@@ -184,9 +195,40 @@ $ cd YOUR_REPOSITORY.wiki
 $ grip
 ```
 
-*By [Joshua Gourneau](https://twitter.com/gourneau/status/636329126643658753)*.
+*By [Joshua Gourneau](https://twitter.com/gourneau/status/636329126643658753).*
 
-*Want to share your own? [Say hello][twitter] or [see below](#contributing).*
+
+#### Generate HTML documentation from a collection of linked README files
+
+1. Enter the directory:
+
+   ```bash
+   $ cd YOUR_DIR
+   $ export GRIPURL=$(PWD)
+   ```
+
+2. Include all assets by setting the `CACHE_DIRECTORY` [config variable](#configuration):
+
+   ```bash
+   $ echo "CACHE_DIRECTORY = '$(pwd)/asset'" >> ~/.grip/settings.py
+   ```
+
+3. Export all your Markdown files with Grip and replace absolute asset paths with relative paths:
+
+   ```bash
+   $ for f in *.md; do grip --export $f --inline=False; done
+   $ for f in *.html; do sed -i '' "s?$GRIPURL/??g" $f; done
+   ```
+
+You can optionally compress the set of HTML files to `docs.tgz` with:
+
+   ```bash
+   $ tar -czvf docs.tgz `ls | grep [\.]html$` asset
+   ```
+
+Looking for a cross platform solution? Here's an equivalent [Python script](https://gist.github.com/mrexmelle/659abc02ae1295d60647).
+
+*By [Matthew R. Tanudjaja](https://github.com/mrexmelle).*
 
 
 Configuration
@@ -709,7 +751,7 @@ If your PR has been waiting a while, feel free to [ping me on Twitter][twitter].
 Use this software often? Please consider [supporting Grip][support].
 
 <a href="https://gratipay.com/grip/" title="Thank you!" target="_blank">
-  <img src="https://img.shields.io/gratipay/joeyespo.svg" align="center" alt="Thank you!">
+  <img src="https://img.shields.io/gratipay/grip.svg" align="center" alt="Thank you!">
 </a>
 
 
