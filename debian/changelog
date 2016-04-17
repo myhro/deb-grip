@@ -1,4 +1,4 @@
-grip (4.2.0-1) UNRELEASED; urgency=medium
+grip (4.2.0-1) unstable; urgency=medium
 
   * New upstream release.
   * Add README.source explaining how to build the package with 'gbp' or
@@ -6,7 +6,7 @@ grip (4.2.0-1) UNRELEASED; urgency=medium
   * Bump copyright year for Joe Esposito.
   * Update man page adding new '--no-inline' option.
 
- -- Tiago Ilieve <tiago.myhro@gmail.com>  Sat, 16 Apr 2016 12:51:47 -0300
+ -- Tiago Ilieve <tiago.myhro@gmail.com>  Sun, 17 Apr 2016 15:10:29 -0300
 
 grip (4.1.0-1) unstable; urgency=medium
 
