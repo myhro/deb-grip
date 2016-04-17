@@ -1,6 +1,8 @@
 grip (4.2.0-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Add README.source explaining how to build the package with 'gbp' or
+    manually generate an orig tarball from the 'upstream' branch.
   * Bump copyright year for Joe Esposito.
   * Update man page adding new '--no-inline' option.
 

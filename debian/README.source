@@ -1,0 +1,24 @@
+grip source package
+===================
+
+The code for the grip source package is managed with Git, with the aid of
+"gbp". The binary package can be generated with:
+
+  gbp buildpackage
+
+If there's a need to manually generate an orig tarball from the "upstream"
+branch, it's possible to use the Git tags in the format "upstream/{version}"
+where {version} is the name of the version defined by the upstream.
+
+For instance, if the upstream version is "4.1.0", the command to generate an
+orig tarball is:
+
+  git archive upstream/4.1.0 | gzip > ../grip_4.1.0.orig.tar.gz
+
+As an alternative, it's also possible to download the tarball directly from
+upstream forcing "uscan" to download it:
+
+  uscan --force-download
+
+In either way, the tarball should be available for building the package with
+regular tools like "dpkg-buildpackage".
