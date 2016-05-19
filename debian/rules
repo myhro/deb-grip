@@ -22,7 +22,7 @@ override_dh_auto_build:
 	txt2man -s 1 -t grip debian/docs/grip.txt > debian/grip.1
 
 override_dh_auto_install:
-	dh_auto_install
-	# Remove auto-generated entry point script which wil be replaced by a
-	# custom one
-	rm debian/grip/usr/bin/grip
+	dh_auto_install -- --install-args="--install-lib=/usr/share/grip"
+	# Move the entry point script to the application root, otherwise it won't
+	# work. A symlink for it in '/usr/bin/grip' will be created.
+	mv debian/grip/usr/bin/grip debian/grip/usr/share/grip/run
