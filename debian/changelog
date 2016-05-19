@@ -1,3 +1,15 @@
+grip (4.2.0-2) unstable; urgency=medium
+
+  * Bump 'Standards-Version' to 3.9.8 (no changes needed).
+  * Install application in a private module directory:
+    - Add 'debian/grip.links', linking '/usr/share/grip/run' to
+    '/usr/bin/grip'.
+    - Remove custom entry point script, dropping 'debian/bin/grip' and
+    'debian/grip.install'.
+    - Update 'override_dh_auto_install' in 'debian/rules'.
+
+ -- Tiago Ilieve <tiago.myhro@gmail.com>  Thu, 19 May 2016 05:54:06 -0300
+
 grip (4.2.0-1) unstable; urgency=medium
 
   * New upstream release.
