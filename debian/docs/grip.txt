@@ -55,6 +55,13 @@ OPTIONS
 
   -h, --help         Show help message and exit.
 
+ENVIRONMENT VARIABLES
+
+  GRIPHOME      Specify an alternative settings.py location, "~/.grip" by
+                default.
+
+  GRIPURL       The URL of the Grip server, "/__/grip" by default.
+
 EXAMPLES
   To render the readme of a repository:
 
