@@ -2,7 +2,6 @@ Grip -- GitHub Readme Instant Preview
 =====================================
 
 [![Current version on PyPI](http://img.shields.io/pypi/v/grip.svg)][pypi]
-[![Downloads/month on PyPI](http://img.shields.io/pypi/dm/grip.svg)][pypi]
 <a href="https://gratipay.com/grip/" title="Thank you!" target="_blank">
   <img src="https://img.shields.io/gratipay/grip.svg" alt="Thank you!">
 </a>
@@ -210,7 +209,7 @@ $ grip
 2. Include all assets by setting the `CACHE_DIRECTORY` [config variable](#configuration):
 
    ```bash
-   $ echo "CACHE_DIRECTORY = '$(pwd)/asset'" >> ~/.grip/settings.py
+   $ echo "CACHE_DIRECTORY = '$(pwd)/assets'" >> ~/.grip/settings.py
    ```
 
 3. Export all your Markdown files with Grip and replace absolute asset paths with relative paths:
@@ -223,7 +222,7 @@ $ grip
 You can optionally compress the set of HTML files to `docs.tgz` with:
 
    ```bash
-   $ tar -czvf docs.tgz `ls | grep [\.]html$` asset
+   $ tar -czvf docs.tgz `ls | grep [\.]html$` assets
    ```
 
 Looking for a cross platform solution? Here's an equivalent [Python script](https://gist.github.com/mrexmelle/659abc02ae1295d60647).
@@ -566,7 +565,7 @@ ReadmeReader()
 ```
 
 
-#### class class DirectoryReader(ReadmeReader)
+#### class DirectoryReader(ReadmeReader)
 
 Reads Readme files from URL subpaths.
 

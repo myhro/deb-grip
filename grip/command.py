@@ -65,7 +65,7 @@ def main(argv=None, force_utf8=True, patch_svg=True):
     if force_utf8 and sys.version_info[0] == 2:
         reload(sys)
         sys.setdefaultencoding('utf-8')
-    if patch_svg and sys.version_info[0] == 2 and sys.version_info[2] <= 6:
+    if patch_svg and sys.version_info[0] == 2 and sys.version_info[1] <= 6:
         mimetypes.add_type('image/svg+xml', '.svg')
 
     if argv is None:
@@ -116,7 +116,7 @@ def main(argv=None, force_utf8=True, patch_svg=True):
     host, port = split_address(address)
 
     # Validate address
-    if address and not host and not port:
+    if address and not host and port is None:
         print('Error: Invalid address', repr(address))
 
     # Run server

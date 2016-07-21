@@ -99,6 +99,11 @@ class Grip(Flask):
         self.render_inline = render_inline
         self.title = title
         self.quiet = quiet
+        if self.quiet:
+            import logging
+            log = logging.getLogger('werkzeug')
+            log.setLevel(logging.ERROR)
+
 
         # Overridable attributes
         if self.renderer is None:
@@ -128,7 +133,8 @@ class Grip(Flask):
         rate_limit_route = posixpath.join(grip_url, 'rate-limit-preview')
 
         # Initialize views
-        self.before_first_request(self._retrieve_styles)
+        self._styles_retrieved = False
+        self.before_request(self._retrieve_styles)
         self.add_url_rule(asset_route, 'asset', self._render_asset)
         self.add_url_rule(asset_subpath, 'asset', self._render_asset)
         self.add_url_rule('/', 'render', self._render_page)
@@ -151,12 +157,6 @@ class Grip(Flask):
         normalized = self.reader.normalize_subpath(subpath)
         if normalized != subpath:
             return redirect(normalized)
-
-        # Get the contextual or overridden title
-        title = self.title
-        if title is None:
-            filename = self.reader.filename_for(subpath)
-            title = ' - '.join([filename or '', 'Grip'])
 
         # Read the Readme text or asset
         try:
@@ -188,7 +188,8 @@ class Grip(Flask):
                            else None)
 
         return render_template(
-            'index.html', title=title, content=content, favicon=favicon,
+            'index.html', filename=self.reader.filename_for(subpath),
+            title=self.title, content=content, favicon=favicon,
             user_content=self.renderer.user_content,
             wide_style=self.render_wide, style_urls=self.assets.style_urls,
             styles=self.assets.styles, autorefresh_url=autorefresh_url)
@@ -310,6 +311,10 @@ class Grip(Flask):
         Retrieves the style URLs from the source and caches them. This
         is called before the first request is dispatched.
         """
+        if self._styles_retrieved:
+            return
+        self._styles_retrieved = True
+
         try:
             self.assets.retrieve_styles(url_for('asset'))
         except Exception as ex:
@@ -340,7 +345,7 @@ class Grip(Flask):
         if cache_directory:
             cache_directory = cache_directory.format(version=__version__)
             cache_path = os.path.join(self.instance_path, cache_directory)
-        return GitHubAssetManager(cache_path, self.config['STYLE_URLS'])
+        return GitHubAssetManager(cache_path, self.config['STYLE_URLS'], self.quiet)
 
     def add_content_types(self):
         """

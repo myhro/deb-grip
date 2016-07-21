@@ -8,7 +8,13 @@ Render local readme files before sending off to GitHub.
 :license: MIT, see LICENSE for more details.
 """
 
-__version__ = '4.2.0'
+__version__ = '4.3.2'
+
+import sys
+
+# Patch for Flask 11.0+ on Python 3 (pypy3)
+if not hasattr(sys, 'exc_clear'):
+    sys.exc_clear = lambda: None
 
 from .api import (
     clear_cache, create_app, export, render_content, render_page, serve)
