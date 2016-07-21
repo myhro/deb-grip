@@ -2,6 +2,30 @@ Grip Changelog
 --------------
 
 
+#### Version 4.3.2 (2016-07-21)
+
+- Bugfix: Fix `setup.py install` ([#199](https://github.com/joeyespo/grip/issues/199))
+
+
+#### Version 4.3.1 (2016-07-21)
+
+- Bugfix: Allow port 0 ([#197](https://github.com/joeyespo/grip/pull/197))
+- Bugfix: Fix setup.py build and include octicon files in the build asset ([#198](https://github.com/joeyespo/grip/issues/198))
+
+
+#### Version 4.3.0 (2016-07-19)
+
+- Bugfix: Fix `--export` deadlock ([#184](https://github.com/joeyespo/grip/issues/184))
+- Bugfix: Make `--quiet` truly quiet ([#188](https://github.com/joeyespo/grip/pull/188) - thanks, [@kba][]!)
+- Bugfix: Allow `--clear` to work without a README file present ([#189](https://github.com/joeyespo/grip/issues/189))
+- Bugfix: Fix tests by patching sys.exc_clear to have Flask 0.11 work on pypy3 ([#190](https://github.com/joeyespo/grip/issues/190))
+- Bugfix: Fix minor version check during patch_svg ([#191](https://github.com/joeyespo/grip/issues/191))
+- Bugfix: Add Octicon font until the Readme API inlines SVGs ([#192](https://github.com/joeyespo/grip/issues/192))
+- Bugfix: Show '- Grip' in `<title>` only, not in page header ([#193](https://github.com/joeyespo/grip/issues/193))
+- Readme: Remove duplicated words ([#177](https://github.com/joeyespo/grip/pull/177) - thanks, [@jwilk][]!)
+- Readme: Remove download count badge since it's broken ([#194](https://github.com/joeyespo/grip/pull/194))
+
+
 #### Version 4.2.0 (2016-04-12)
 
 - Enhancement: Expose `render_inline` through `--no-inline` CLI option ([#165](https://github.com/joeyespo/grip/pull/165) - thanks, [@mrexmelle][]!)
@@ -100,7 +124,7 @@ Grip Changelog
 - Bugfix: Fix asset retrieval on both Python 2 and 3
 - Bugfix: Fix `InsecureRequestWarning` problems ([#111](https://github.com/joeyespo/grip/issues/111), [#128](https://github.com/joeyespo/grip/issues/128))
 - Bugfix: Fix missing Octicons by properly downloading assets as binary files ([#127](https://github.com/joeyespo/grip/issues/127))
-- Bugfix: Add trailing slashes to directories and remove them for files so so relative links are correct ([#131](https://github.com/joeyespo/grip/issues/131))
+- Bugfix: Add trailing slashes to directories and remove them for files so relative links are correct ([#131](https://github.com/joeyespo/grip/issues/131))
 - CLI: Add "Omit this to render as a normal GitHub README file." to help avoid confusion of `--gfm`
 - Readme: Add note about `^D` and `^Z` on Windows ([#105](https://github.com/joeyespo/grip/issues/105))
 - Cleanup: PEP8
@@ -128,7 +152,7 @@ Grip Changelog
 - Enhancement: Allow reading from stdin ([#72](https://github.com/joeyespo/grip/issues/72))
 - Enhancement: Allow `:<port>` pattern in CLI
 - Enhancement: Add a favicon ![favicon](artwork/favicon.ico) ([#60](https://github.com/joeyespo/grip/issues/60))
-- Enhancement: Add "GitHub rate limit" page to replace the a generic 403 error ([#48](https://github.com/joeyespo/grip/issues/48))
+- Enhancement: Add "GitHub rate limit" page to replace the generic 403 error ([#48](https://github.com/joeyespo/grip/issues/48))
 - Enhancement: Add option to clear the cache ([#68](https://github.com/joeyespo/grip/issues/68))
 - Enhancement: Allow storing credentials in config file ([#61](https://github.com/joeyespo/grip/issues/61))
 - Enhancement: Read user settings from `~/.grip`
@@ -176,7 +200,7 @@ Grip Changelog
 - Enhancement: Relay GitHub API HTTP errors to browser for debuggability
 - Enhancement: Extract render_app and add create_app in API
 - Bugfix: Fix manual installs using setup.py (thanks, [@briancappello][]!)
-- Bugfix: Fix rendering rendering local images (thanks, [@jgallagher][]!)
+- Bugfix: Fix rendering local images (thanks, [@jgallagher][]!)
 - Bugfix: Handle File Not Found errors as 404 when given a directory
 - Rename and re-arrange the configuration files
 - Update README.md with new features
@@ -257,3 +281,5 @@ Grip Changelog
 [@ErikMHummel]: https://github.com/ErikMHummel
 [@mrexmelle]: https://github.com/mrexmelle
 [@motevets]: https://github.com/motevets
+[@kba]: https://github.com/kba
+[@jwilk]: https://github.com/jwilk
