@@ -3,7 +3,9 @@ Section: utils
 Priority: optional
 Maintainer: Tiago Ilieve <tiago.myhro@gmail.com>
 Build-Depends: debhelper (>= 9),
+               dh-linktree,
                dh-python,
+               octicons,
                python3-all,
                python3-docopt,
                python3-flask,
